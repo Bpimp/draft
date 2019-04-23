@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>移动端</title>
+    <style>
+        body,h1,h2,p,pre{
+            margin:0;
+            padding:0;
+        }
+        section{
+            margin:0 256px;
+        }
+        pre{
+            background: lightgrey;
+            border:1px dashed grey;
+            color:#000;
+            font-size:16px;
+            line-height:24px;
+        }
+
+    </style>
+</head>
+<body>
+<section>
+    <h1>一.真机测试</h1>
+    <p>网上搜索下载</p>
+    <h1>二.配置</h1>
+        <h2>1.viewport设置</h2>
+            <pre>
+                &lt;meta name="viewport" content="width=device-width,user-scalable=no"/&gt;
+                //viewport 视口(可视区窗口),默认宽度为980
+                //width(可视区的宽度)设置(number||device-width)
+                //user-scalable 是否允许用户缩放(IOS10无效)
+                //[initial,minimum,maximum]-scale:初始，最小，最大缩放比
+                //window.devicePixelRatio 最小像素比
+            </pre>
+        <h2>2.meta设置</h2>
+            <pre>
+                &lt;meta name="x5-orientation||screen-orientation" content="portrait||landscape"/&gt;
+                //强制x5或UC浏览器portrait(竖屏)或landscape(横屏)显示
+                &lt;meta name="x5-fullscreen||screen-orientation" content="true||yes"/&gt;
+                //全屏显示
+                &lt;meta name="format-detecttion" content="telephone=no,email=no"/&gt;
+                //禁止电话和邮箱的识别
+                    &lt;a href="tel:{telephone number}"&gt;{telephone number}&lt;/a&gt;
+                &lt;a href="mailto:{email}"&gt;{email}&lt;/a&gt;
+            </pre>
+    <h1>三.样式设置</h1>
+        <ul>
+            <li>-webkit-tap-highlight-color:点击时的样式</li>
+            <li>-webkit-appearance+border-radius 清除按钮圆角</li>
+            <li>Helvetica 默认英文字体</li>
+            <li>-webkit-text-size-adjust:100% 禁止文字缩放</li>
+        </ul>
+    <h1>适配</h1>
+        <h2>百分比适配</h2>
+        <p>高度适配问题，配合其他方法使用</p>
+        <h2>viewport适配</h2>
+        <p>调整缩放比例</p>
+        <h2>rem适配</h2>
+</section>
+</body>
+</html>
