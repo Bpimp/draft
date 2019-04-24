@@ -8,6 +8,9 @@
             margin:0;
             padding:0;
         }
+        h1{
+            text-align:center;
+        }
         section{
             margin:0 256px;
         }
@@ -18,47 +21,131 @@
             font-size:16px;
             line-height:24px;
         }
-
+        strong{
+            color:palevioletred;
+        }
     </style>
 </head>
 <body>
 <section>
-    <h1>一.真机测试</h1>
-    <p>网上搜索下载</p>
-    <h1>二.配置</h1>
-        <h2>1.viewport设置</h2>
+    <h1>基本设置</h1>
+        <h2>一、真机测试</h2>
+        <p>网上搜索下载</p>
+        <h2>二、配置</h2>
+            <h3>1.viewport设置</h3>
+                <pre>
+                    &lt;meta name="viewport" content="width=device-width,user-scalable=no"/&gt;
+                    //viewport 视口(可视区窗口),默认宽度为980
+                    //width(可视区的宽度)设置(number||device-width)
+                    //user-scalable 是否允许用户缩放(IOS10无效)
+                    //[initial,minimum,maximum]-scale:初始，最小，最大缩放比
+                    //window.devicePixelRatio 最小像素比
+                </pre>
+            <h3>2.meta设置</h3>
+                <pre>
+                    &lt;meta name="x5-orientation||screen-orientation" content="portrait||landscape"/&gt;
+                    //强制x5或UC浏览器portrait(竖屏)或landscape(横屏)显示
+                    &lt;meta name="x5-fullscreen||screen-orientation" content="true||yes"/&gt;
+                    //全屏显示
+                    &lt;meta name="format-detecttion" content="telephone=no,email=no"/&gt;
+                    //禁止电话和邮箱的识别
+                        &lt;a href="tel:{telephone number}"&gt;{telephone number}&lt;/a&gt;
+                    &lt;a href="mailto:{email}"&gt;{email}&lt;/a&gt;
+                </pre>
+        <h2>三、样式设置</h2>
+            <ul>
+                <li>-webkit-tap-highlight-color:点击时的样式</li>
+                <li>-webkit-appearance+border-radius 清除按钮圆角</li>
+                <li>Helvetica 默认英文字体</li>
+                <li>-webkit-text-size-adjust:100% 禁止文字缩放</li>
+            </ul>
+        <h2>四、适配</h2>
+            <h3>1.百分比适配</h3>
+            <p>高度适配问题，配合其他方法使用</p>
+            <h3>2.viewport适配</h3>
+            <p>调整缩放比例</p>
+            <h3>3.rem适配</h3>
+        <h2>五、弹性盒模型</h2>
             <pre>
-                &lt;meta name="viewport" content="width=device-width,user-scalable=no"/&gt;
-                //viewport 视口(可视区窗口),默认宽度为980
-                //width(可视区的宽度)设置(number||device-width)
-                //user-scalable 是否允许用户缩放(IOS10无效)
-                //[initial,minimum,maximum]-scale:初始，最小，最大缩放比
-                //window.devicePixelRatio 最小像素比
+                &lt;style&gt;
+                    #box{
+                        display:flex;//new
+                        display:-浏览器前缀-box;//old
+                        flex-direction:row/column//||row/column-reverse//new设置元素轴向||元素排列顺序
+                        -前缀-box-orient:horizontal/vertical//old设置元素轴向
+                        -前缀-box-direction:normal/reverse;//old
+                        justify-content:flex-start/flex-end/center/space-between/space-around;//new元素所处位置(富余空间管理)
+                        -前缀-box-pack:start/end/center/justify;//old
+                        align-items:flex-start/flex-end/center/baseline;new侧轴富余空间管理
+                        -前缀-box-align:start/end/center;//old
+                    }
+                    #box .item{
+                        flex-grow:;//new调整子元素的尺寸
+                        -前缀-box-flex:;//old
+                        order:无限制;//new元素之间的顺序
+                        -前缀-box-ordinal-group:最小为1;//old
+                        margin:;
+                    }
+                &lt;/style&gt;
+                &lt;body&gt;
+                    &lt;div id="box"&gt;
+                        &lt;div class="item"&gt;&lt;/div&gt;
+                        &lt;div class="item"&gt;&lt;/div&gt;
+                        &lt;div class="item"&gt;&lt;/div&gt;
+                    &lt/div&gt;
+                &lt;/body&gt;
             </pre>
-        <h2>2.meta设置</h2>
-            <pre>
-                &lt;meta name="x5-orientation||screen-orientation" content="portrait||landscape"/&gt;
-                //强制x5或UC浏览器portrait(竖屏)或landscape(横屏)显示
-                &lt;meta name="x5-fullscreen||screen-orientation" content="true||yes"/&gt;
-                //全屏显示
-                &lt;meta name="format-detecttion" content="telephone=no,email=no"/&gt;
-                //禁止电话和邮箱的识别
-                    &lt;a href="tel:{telephone number}"&gt;{telephone number}&lt;/a&gt;
-                &lt;a href="mailto:{email}"&gt;{email}&lt;/a&gt;
-            </pre>
-    <h1>三.样式设置</h1>
+    <h1>事件</h1>
         <ul>
-            <li>-webkit-tap-highlight-color:点击时的样式</li>
-            <li>-webkit-appearance+border-radius 清除按钮圆角</li>
-            <li>Helvetica 默认英文字体</li>
-            <li>-webkit-text-size-adjust:100% 禁止文字缩放</li>
+            <li>
+                touchstart <span>手指触摸</span>
+            </li>
+            <li>
+                touchmove <span>手指移动</span>
+            </li>
+            <li>
+                touchend <span>手指离开</span>
+            </li>
         </ul>
-    <h1>适配</h1>
-        <h2>百分比适配</h2>
-        <p>高度适配问题，配合其他方法使用</p>
-        <h2>viewport适配</h2>
-        <p>调整缩放比例</p>
-        <h2>rem适配</h2>
+        <strong>注:阻止pc事件{ev.preventDefault()}可以解决大部分的问题,焦点元素要配合{ev.stopPropagation()}</strong>
+        <h2>事件对象</h2>
+            <ul>
+                <li>touches <span>位于屏幕上的手指信息</span></li>
+                <li>targetTouches <span>位于当前元素上的手指信息</span></li>
+                <li>changedTouches <span>与当前事件有关的手指信息</span></li>
+            </ul>
+        <h2>transform 变换</h2>
+            <ul>
+                <li>
+                    transform-origin <span>变换原点</span>
+                </li>
+                <li>
+                    rotate(deg) <span>旋转</span>
+                </li>
+                <li>
+                    skewX/Y(deg) <span>斜切</span>
+                </li>
+                <li>
+                    scaleX/Y() <span>缩放</span>
+                </li>
+                <li>
+                    translateX/Y <span>位移</span>
+                </li>
+                <li>
+                    3D (给父级加perspective)
+                </li>
+                <li>
+                    矩阵
+                    matrix(a,b,c,d,e,f)
+                    <ul>
+                        <li>位移:e,f</li>
+                        <li>缩放:a,c,e||b,d,f</li>
+                        <li>斜切:c||b</li>
+                        <li>旋转:a,b,c,d</li>
+                    </ul>
+                </li>
+            </ul>
+            <strong>注:移动端需加前缀</strong>
 </section>
 </body>
 </html>
