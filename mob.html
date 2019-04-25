@@ -129,10 +129,26 @@
                     scaleX/Y() <span>缩放</span>
                 </li>
                 <li>
-                    translateX/Y <span>位移</span>
+                    translateX/Y <span>位移</span><br/>
+                    translate3d (父元素+perspective)<br/>
+                    transform-style:flat/preserve-3d(保留子元素3d效果)<br/>
+                    perspective-origin:center center;视线原点<br/>
+                    backface-visibility:;是否隐藏背面
                 </li>
                 <li>
-                    3D (给父级加perspective)
+                    MTween 动画函数<br/>
+                    <pre>
+                    MTween({
+                        el:元素
+                        target:{
+                           运动目标点
+                        }
+                        time:时间
+                        type:类型
+                        callBack:回调函数
+                        callIn:同步执行函数
+                    })
+                    </pre>
                 </li>
                 <li>
                     矩阵
