@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body,ul,li{
+            margin:0;
+            padding:0;
+        }
+        #container{
+            width:1000px;
+            border:1px solid blue;
+            margin:0 auto;
+            position:relative;
+        }
+        #container img{
+            position:absolute;
+        }
+        #loader{
+            width:20px;
+            height:20px;
+            position:relative;
+        }
+        #loader .child{
+            width:100%;
+            height:100%;
+            position:absolute;
+            top:0;
+            left:0;
+        }
+        #loader .child:before{
+            content:'';
+            display:block;
+            margin:0 auto;
+            width:30%;
+            height:30%;
+            background:lightskyblue;
+            border-radius: 100%;
+            animation: loader 0.6s infinite ease-in-out;
+        }
+        #loader .circle-2{
+            transform: rotate(60deg);
+        }
+        #loader .circle-2:before{
+            animation-delay:-0.5s;
+        }
+        #loader .circle-3{
+            transform: rotate(120deg);
+        }
+        #loader .circle-3:before{
+            animation-delay:-0.4s;
+        }
+        #loader .circle-4{
+            transform: rotate(180deg);
+        }
+        #loader .circle-4:before{
+            animation-delay:-0.3s;
+        }
+        #loader .circle-5{
+            transform: rotate(240deg);
+        }
+        #loader .circle-5:before{
+            animation-delay:-0.2s;
+        }
+        #loader .circle-6{
+            transform: rotate(300deg);
+        }
+        #loader .circle-6:before{
+            animation-delay:-0.1s;
+        }
+        @keyframes loader{
+            0%{
+                opacity: 0;
+            }
+            25%{
+                opacity:.25;
+            }
+            50%{
+                opacity:.50;
+            }
+            75%{
+                opacity:.75;
+            }
+            100%{
+                opacity:1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="container"></div>
+    <div id="loader">
+        <div class="child circle-1"></div>
+        <div class="child circle-2"></div>
+        <div class="child circle-3"></div>
+        <div class="child circle-4"></div>
+        <div class="child circle-5"></div>
+        <div class="child circle-6"></div>
+    </div>
+</body>
+</html>

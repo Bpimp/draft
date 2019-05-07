@@ -4,11 +4,11 @@
     <meta charset="UTF-8">
     <title>移动端</title>
     <style>
-        body,h1,h2,p,pre{
+        body,h2,p,pre{
             margin:0;
             padding:0;
         }
-        h1{
+        h2{
             text-align:center;
         }
         section{
@@ -28,10 +28,10 @@
 </head>
 <body>
 <section>
-    <h1>基本设置</h1>
-        <h2>一、真机测试</h2>
+    <h2>基本设置</h2>
+        <h3>一、真机测试</h3>
         <p>网上搜索下载</p>
-        <h2>二、配置</h2>
+        <h3>二、配置</h3>
             <h3>1.viewport设置</h3>
                 <pre>
                     &lt;meta name="viewport" content="width=device-width,user-scalable=no"/&gt;
@@ -52,20 +52,20 @@
                         &lt;a href="tel:{telephone number}"&gt;{telephone number}&lt;/a&gt;
                     &lt;a href="mailto:{email}"&gt;{email}&lt;/a&gt;
                 </pre>
-        <h2>三、样式设置</h2>
+        <h3>三、样式设置</h3>
             <ul>
                 <li>-webkit-tap-highlight-color:点击时的样式</li>
                 <li>-webkit-appearance+border-radius 清除按钮圆角</li>
                 <li>Helvetica 默认英文字体</li>
                 <li>-webkit-text-size-adjust:100% 禁止文字缩放</li>
             </ul>
-        <h2>四、适配</h2>
+        <h3>四、适配</h3>
             <h3>1.百分比适配</h3>
             <p>高度适配问题，配合其他方法使用</p>
             <h3>2.viewport适配</h3>
             <p>调整缩放比例</p>
             <h3>3.rem适配</h3>
-        <h2>五、弹性盒模型</h2>
+        <h3>五、弹性盒模型</h3>
             <pre>
                 &lt;style&gt;
                     #box{
@@ -108,13 +108,13 @@
             </li>
         </ul>
         <strong>注:阻止pc事件{ev.preventDefault()}可以解决大部分的问题,焦点元素要配合{ev.stopPropagation()}</strong>
-        <h2>事件对象</h2>
+        <h3>事件对象</h3>
             <ul>
                 <li>touches <span>位于屏幕上的手指信息</span></li>
                 <li>targetTouches <span>位于当前元素上的手指信息</span></li>
                 <li>changedTouches <span>与当前事件有关的手指信息</span></li>
             </ul>
-        <h2>transform 变换</h2>
+        <h3>transform 变换</h3>
             <ul>
                 <li>
                     transform-origin <span>变换原点</span>
@@ -159,6 +159,13 @@
                         <li>斜切:c||b</li>
                         <li>旋转:a,b,c,d</li>
                     </ul>
+                </li>
+                <li>
+                    陀螺仪<br/>
+                    devicemotion:检测手机晃动<br/>
+                    accelerationIncludingGravity:加速度对象
+                    navigator.userAgent:判断手机系统
+                    orientationchange:横竖屏切换
                 </li>
             </ul>
             <strong>注:移动端需加前缀</strong>
