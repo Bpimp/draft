@@ -4,20 +4,41 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <style>
-        body,ul,li{
+        body{
             margin:0;
             padding:0;
         }
+        .clearfix:after{
+            content: '';
+            display:block;
+            clear:both;
+        }
         #container{
-            width:1000px;
             border:1px solid blue;
             margin:0 auto;
             position:relative;
+            height:1000px;
+        }
+        #container div{
+            height:100px;
+            float:left;
+            background:red;
+            width:200px;
+            margin-left:10px;
+            box-sizing: border-box;
         }
         #container img{
             position:absolute;
         }
+        section{
+            width:100%;
+            height:60px;
+            position:fixed;
+            bottom:0;
+            left:0;
+        }
         #loader{
+            margin:0 auto;
             width:20px;
             height:20px;
             position:relative;
@@ -87,16 +108,78 @@
             }
         }
     </style>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script>
+        window.onload=function(){
+            let oContainer=document.querySelector('#container');
+            let aDiv=oContainer.querySelectorAll('div');
+            let iwidth=200;
+            let ispace=10;
+            let iouterwidth=iwidth+ispace;
+            let str='';
+            //根据屏幕大小改变列数
+            function setCells() {
+                icells=Math.floor(window.innerWidth/iouterwidth);
+                oContainer.style.width=iouterwidth*icells+ispace+'px';
+                for(let i=0;i<icells;i++){
+                    str+='<div></div>';
+                }
+                oContainer.innerHTML+=str;
+            }
+            setCells();
+            axios.get('url')//url:图片数据地址
+                .then(function(response){
+                    for(let i=0;i<data.length;i++){
+                        let _index=getShort();
+                        let oImg=document.createElement('img');
+                        oImg.src=response[i].image;
+                        //图片加载速度慢会导致图片堆积在某几列的bug，解决方法一是由后端传来图片的宽高，前端按比例添加属性
+                        oDiv[_index].appendChild(oImg);
+                    }
+                })
+                .catch(function(error){
+                    console.log(error);
+                });
+            /*window.onscroll=function () {
+                let
+            };*/
+            //获取最短的位置
+            function getShort() {
+                let index=0;
+                let ih=aDiv[index].offsetHeight;
+                for(let i=1;i<aDiv.length;i++){
+                    if(aDiv[i].offsetHeight<ih){
+                        index=i;
+                        ih=aDiv[i].offsetHeight;
+                    }
+                }
+                return index;
+            }
+            //获取
+            function getTop(obj) {
+                let iTop=0;
+                while(obj){
+                    iTop+=obj.offsetTop;
+                    obj=obj.offsetParent;
+                    console.log(obj);
+                }
+                return iTop;
+            }
+            getTop(aDiv[1]);
+        }
+    </script>
 </head>
 <body>
-    <div id="container"></div>
-    <div id="loader">
-        <div class="child circle-1"></div>
-        <div class="child circle-2"></div>
-        <div class="child circle-3"></div>
-        <div class="child circle-4"></div>
-        <div class="child circle-5"></div>
-        <div class="child circle-6"></div>
-    </div>
+    <div id="container" class="clearfix"></div>
+    <section>
+        <div id="loader">
+            <div class="child circle-1"></div>
+            <div class="child circle-2"></div>
+            <div class="child circle-3"></div>
+            <div class="child circle-4"></div>
+            <div class="child circle-5"></div>
+            <div class="child circle-6"></div>
+        </div>
+    </section>
 </body>
 </html>
