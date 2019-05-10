@@ -41,6 +41,15 @@
             transform-origin:center;
             transform: skew(60deg);
         }
+        .bezier{
+            width:200px;
+            height:200px;
+            background:#ed3;
+            transition:all 2s cubic-bezier(.17,.86,.73,.14);
+        }
+        .bezier:hover{
+            transform:translateX(100px);
+        }
     </style>
 </head>
 <body>
@@ -49,5 +58,6 @@
     <div class="round"></div>
     <div class="sector"></div>
     <div class="diamond"></div>
+    <div class="bezier"></div>
 </body>
 </html>
