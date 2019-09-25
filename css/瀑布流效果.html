@@ -17,12 +17,11 @@
             border:1px solid blue;
             margin:0 auto;
             position:relative;
-            height:1000px;
         }
         #container div{
             height:100px;
+            background:deepskyblue;
             float:left;
-            background:red;
             width:200px;
             margin-left:10px;
             box-sizing: border-box;
@@ -121,25 +120,33 @@
             function setCells() {
                 icells=Math.floor(window.innerWidth/iouterwidth);
                 oContainer.style.width=iouterwidth*icells+ispace+'px';
+                str='';
+                oContainer.innerHTML='';
                 for(let i=0;i<icells;i++){
                     str+='<div></div>';
                 }
                 oContainer.innerHTML+=str;
             }
             setCells();
-            axios.get('url')//url:图片数据地址
+            window.onresize=function () {
+                setCells();
+            };
+
+            /*axios.get('url')//url:图片数据地址
                 .then(function(response){
+                    let data=response.data.showapi_res_body;
                     for(let i=0;i<data.length;i++){
+                        console.log(data[i]);
                         let _index=getShort();
                         let oImg=document.createElement('img');
-                        oImg.src=response[i].image;
+                        oImg.src=data[i].imageurl;
                         //图片加载速度慢会导致图片堆积在某几列的bug，解决方法一是由后端传来图片的宽高，前端按比例添加属性
-                        oDiv[_index].appendChild(oImg);
+                        aDiv[_index].appendChild(oImg);
                     }
                 })
                 .catch(function(error){
                     console.log(error);
-                });
+                });*/
             /*window.onscroll=function () {
                 let
             };*/
@@ -155,17 +162,15 @@
                 }
                 return index;
             }
-            //获取
+            //获取？？
             function getTop(obj) {
                 let iTop=0;
                 while(obj){
                     iTop+=obj.offsetTop;
                     obj=obj.offsetParent;
-                    console.log(obj);
                 }
                 return iTop;
             }
-            getTop(aDiv[1]);
         }
     </script>
 </head>
