@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        li{
+            list-style: none;
+        }
+        #box{
+            width:325px;
+            height:250px;
+            margin:0 auto;
+            position:relative;
+            overflow: hidden;
+        }
+        ul{
+            width:250px;
+            position:absolute;
+            top:0;
+            left:0;
+            z-index: 1;
+        }
+        ul li{
+            position: absolute;
+            top:0;
+        }
+        img{
+            width:325px;
+            height:250px;
+            float: left;
+            transition:all 1s ease-in-out 1s;
+        }
+        ol{
+            position: absolute;
+            z-index: 2;
+            right:10px;
+            bottom:10px;
+        }
+        ol li{
+            width:20px;
+            height:20px;
+            color:#f60;
+            margin:0 2px;
+            float: left;
+            background: #fff;
+            text-align: center;
+            line-height: 20px;
+        }
+        ol .active{
+            background: #f60;
+            color:#fff;
+        }
+    </style>
+</head>
+<body>
+    <div id='box'>
+       <ul>
+           <li><img src="./img/1.jpg" alt=""></li>
+           <li><img src="./img/2.jpg" alt=""></li>
+           <li><img src="./img/3.jpg" alt=""></li>
+           <li><img src="./img/4.jpg" alt=""></li>
+       </ul> 
+       <ol>
+           <li class="active">1</li>
+           <li>2</li>
+           <li>3</li>
+           <li>4</li>
+       </ol>
+    </div>
+</body>
+<script>
+    let oBox=document.querySelector('#box')
+    let oUl=document.querySelector('ul')
+    let Img=oUl.querySelectorAll('li')
+    let oOl=document.querySelector('ol')
+    let oLi=oOl.querySelectorAll('li')
+    let ImgWidth=Img[0].offsetWidth;
+    let j=0;
+    for(let i=1;i<Img.length;i++){
+        Img[i].style.left=ImgWidth+'px';
+    }
+    for(let i=0;i<Img.length;i++){
+        oLi[i].onmouseover=function(){
+            oLi[j].className='';
+            this.className='active';
+            Img[i].style.transition='left 1s';
+            Img[j].style.transition='left 1s';
+            if(j<i){
+                Img[i].style.left=0;
+                Img[j].style.left=-ImgWidth+'px';
+            }else if(j>i){
+                Img[i].style.left=0;
+                Img[j].style.left=ImgWidth+'px'
+            }
+            j=i;
+        }
+    }
+</script>
+</html>

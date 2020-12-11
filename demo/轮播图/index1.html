@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>轮播图</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        li{
+            list-style: none;
+        }
+        #box{
+            width:325px;
+            height:250px;
+            position:relative;
+            margin:10px auto;
+            z-index: 1;
+            overflow: hidden;
+        }
+        ul{
+            width:325px;
+            position: absolute;
+            top:0;
+        }
+        ul li{
+            float:left;
+            /* display: none; */
+            display: block;
+        }
+        img{
+            width:325px;
+            height:250px;
+            display: block;
+        }
+        ol{
+            z-index: 2;
+            position:absolute;
+            right:10px;
+            bottom:10px;
+        }
+        ol li{
+            width:20px;
+            height:20px;
+            color:#f60;
+            margin:0 2px;
+            float: left;
+            background: #fff;
+            text-align: center;
+            line-height: 20px;
+        }
+        ol .active{
+            background:#f60; 
+            color:#fff;
+        }
+    </style>
+</head>
+<body>
+<div id="box">
+    <ul>
+        <li style="display: block;"><img src="./img/1.jpg" alt="#"></li>
+        <li><img src="./img/2.jpg" alt="*"></li>
+        <li><img src="./img/3.jpg" alt="%"></li>
+        <li><img src="./img/4.jpg" alt="&"></li>
+    </ul>
+    <ol>
+        <li class="active">1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+    </ol>
+</div>
+</body>
+<script>
+    let oBox=document.querySelector('#box');
+    let oUl=document.querySelector('ul');
+    let Img=oUl.querySelectorAll('li');
+    let oAl=document.querySelector('ol');
+    let Ili=oAl.querySelectorAll('li');
+    let j=0;
+    let k=0;
+    let timer=null;
+    let imgHeight=Img[0].offsetHeight;
+    for(let i=0;i<Ili.length;i++){
+        Ili[i].onmouseover=function(){
+            if(j==0){
+                Img[0].style.position='static';
+                oUl.style.top=0;
+                k=0;
+            }
+            Ili[j].className='';
+            this.className='active';
+            startMove(oUl,-i*imgHeight)
+            j=i;
+            k=i;
+        }
+    }
+    timer=setInterval(move,2000);
+    oBox.onmouseover=function(){
+        clearInterval(timer)
+    }
+    oBox.onmouseout=function(){
+        timer=setInterval(move,2000)
+    }
+    function move(){
+        if(j==0){
+            Img[0].style.position='static';
+            oUl.style.top=0;
+            k=0;
+        }
+        if(j==Ili.length-1){
+            j=0;
+            Img[0].style.position='relative';
+            Img[0].style.top=imgHeight*Img.length+'px';
+        }else{
+            j++;
+        }
+        k++;
+        for(let i=0;i<Ili.length;i++){
+            Ili[i].className='';
+        }
+        Ili[j].className='active';
+        startMove(oUl,-k*imgHeight)
+    }
+    function startMove(obj,len){
+        clearInterval(obj.timer);
+        obj.timer = setInterval(function(){
+            var iCur = 0;
+            iCur = parseInt(getStyle(obj,'top')) || 0;
+            console.log(getStyle(obj,'top'))
+            var iSpeed = (len - iCur)/8;
+            iSpeed = iSpeed >0 ? Math.ceil(iSpeed) : Math.floor(iSpeed);
+            obj.style.top = iCur + iSpeed + 'px';
+        },30);
+    }
+    //获取元素当前的某个属性值
+    function getStyle(obj,attr){
+		if(obj.currentStyle){
+			return obj.currentStyle[attr];
+		}
+		else{
+			return getComputedStyle(obj,false)[attr];
+		}
+	}
+</script>
+
+</html>
